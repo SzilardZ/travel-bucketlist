@@ -1,7 +1,6 @@
 package com.szilardz.travelbucketlist.model;
 
 import javax.persistence.Entity;
-import java.util.concurrent.atomic.AtomicInteger;
 
 @Entity
 public class User {
@@ -11,13 +10,11 @@ public class User {
     private String lastName;
     private String email;
 
-    private AtomicInteger nextId = new AtomicInteger();
 
     public User(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.id = nextId.incrementAndGet();
     }
 
     public int getId() {

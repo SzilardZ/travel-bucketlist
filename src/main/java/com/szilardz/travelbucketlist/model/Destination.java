@@ -1,19 +1,16 @@
 package com.szilardz.travelbucketlist.model;
 
-import java.util.concurrent.atomic.AtomicInteger;
-
 public class Destination {
 
+    private int id;
     private String location;
     private String note;
-    private int id;
+    private BucketList bucketList;
 
-    private AtomicInteger nextId = new AtomicInteger();
-
-    public Destination(String location, String note) {
+    public Destination(String location, String note, BucketList bucketList) {
         this.location = location;
         this.note = note;
-        this.id = nextId.incrementAndGet();
+        this.bucketList = bucketList;
     }
 
     public String getLocation() {

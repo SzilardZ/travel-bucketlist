@@ -12,7 +12,6 @@ public class BucketList {
     private List<Destination> destinationList = new ArrayList<>();
 
     public BucketList(User user) {
-        this.id = user.getId();
         this.user = user;
     }
 

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class BucketListController {
 
 
-    @GetMapping("/homepage/{name}")
+    @GetMapping("/{name}")
     public String homepage(@PathVariable String name) {
         return "Hi " + StringUtils.capitalize(name) + ", how are you?";
     }
