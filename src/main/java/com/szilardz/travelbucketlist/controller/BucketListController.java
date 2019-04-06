@@ -14,4 +14,5 @@ public class BucketListController {
         return "Hi " + StringUtils.capitalize(name) + ", how are you?";
     }
 
+
 }
