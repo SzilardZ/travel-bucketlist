@@ -1,44 +1,30 @@
 package com.szilardz.travelbucketlist.model;
 
 import javax.persistence.Entity;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class BucketList {
 
-    private String location;
-    private String note;
     private int id;
+    private User user;
+    private List<Destination> destinationList = new ArrayList<>();
 
-    private AtomicInteger nextId = new AtomicInteger();
-
-    public BucketList(String location, String note) {
-        this.location = location;
-        this.note = note;
-        this.id = nextId.incrementAndGet();
+    public BucketList(User user) {
+        this.id = user.getId();
+        this.user = user;
     }
 
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
+    public void addDestination(Destination destination) {
+        destinationList.add(destination);
     }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public User getUser() {
+        return user;
     }
 }
