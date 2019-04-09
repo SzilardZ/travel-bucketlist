@@ -7,6 +7,8 @@ import com.szilardz.travelbucketlist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+
 @Component
 public class Initializer {
 
@@ -16,10 +18,11 @@ public class Initializer {
     @Autowired
     private BucketListService bucketListService;
 
+    @PostConstruct
     public void init() {
         User user = new User("Adam", "Smith", "adamsmith@yahoo.com");
         userService.addUser(user);
-        bucketListService.addBucketList(new BucketList());
+        bucketListService.addBucketList(new BucketList(user));
     }
 
 }
