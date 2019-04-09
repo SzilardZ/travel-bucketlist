@@ -10,7 +10,7 @@ public class BucketList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
 
     @Column(name = "user")
     private User user;
@@ -30,7 +30,7 @@ public class BucketList {
         destinationList.add(destination);
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 

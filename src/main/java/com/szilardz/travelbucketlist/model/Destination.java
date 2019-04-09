@@ -2,7 +2,7 @@ package com.szilardz.travelbucketlist.model;
 
 public class Destination {
 
-    private int id;
+    private Long id;
     private String location;
     private String note;
     private BucketList bucketList;
@@ -29,11 +29,11 @@ public class Destination {
         this.note = note;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 }
