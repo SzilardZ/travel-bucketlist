@@ -1,9 +1,19 @@
 package com.szilardz.travelbucketlist.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
+
 
 @Entity
 @Table(name="_users")
+@Data               //lombok, getters & setters, toString
+@NoArgsConstructor  //lombok, constructor with no argument
+@AllArgsConstructor //lombok, constructor with all argument
+@Builder            //lombok, with that, we can build a new instance
 public class User {
 
     @Id
@@ -19,45 +29,4 @@ public class User {
     @Column(name = "email")
     private String email;
 
-
-    public User() {
-    }
-
-    public User(String firstName, String lastName, String email) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }

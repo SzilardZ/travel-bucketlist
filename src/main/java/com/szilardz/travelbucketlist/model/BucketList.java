@@ -1,11 +1,20 @@
 package com.szilardz.travelbucketlist.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name = "bucket_list")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class BucketList {
 
     @Id
@@ -18,23 +27,4 @@ public class BucketList {
     @Column(name = "destinations")
     private List<Destination> destinationList = new ArrayList<>();
 
-
-    public BucketList() {
-    }
-
-    public BucketList(User user) {
-        this.user = user;
-    }
-
-    public void addDestination(Destination destination) {
-        destinationList.add(destination);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public User getUser() {
-        return user;
-    }
 }

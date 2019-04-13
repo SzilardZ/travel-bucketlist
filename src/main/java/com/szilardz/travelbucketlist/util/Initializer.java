@@ -20,9 +20,9 @@ public class Initializer {
 
     @PostConstruct
     public void init() {
-        User user = new User("Adam", "Smith", "adamsmith@yahoo.com");
+        User user = User.builder().firstName("Adam").lastName("Smith").email("adamsmith@yahoocom").build();
         userService.addUser(user);
-        bucketListService.addBucketList(new BucketList(user));
+        bucketListService.addBucketList(BucketList.builder().user(user).build());
     }
 
 }

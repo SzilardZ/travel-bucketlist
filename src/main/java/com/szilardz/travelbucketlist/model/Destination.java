@@ -1,39 +1,31 @@
 package com.szilardz.travelbucketlist.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "destination")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class Destination {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @Column(name = "location")
     private String location;
+
+    @Column(name = "note")
     private String note;
+
+    @ManyToMany
     private BucketList bucketList;
 
-    public Destination(String location, String note, BucketList bucketList) {
-        this.location = location;
-        this.note = note;
-        this.bucketList = bucketList;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getNote() {
-        return note;
-    }
-
-    public void setNote(String note) {
-        this.note = note;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 }
