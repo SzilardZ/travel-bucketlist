@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="persons")
+@Table(name="_user")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,7 +26,7 @@ public class User {
 
     private String email;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne
     private BucketList bucketList;
 
 }

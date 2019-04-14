@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BucketListRepository extends JpaRepository<BucketList, Long> {
+
+    BucketList getByBucketListId(Long id);
 }

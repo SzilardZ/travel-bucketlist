@@ -18,10 +18,9 @@ public class BucketList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bucketListId;
 
-    @OneToOne
-    private User user;
+    private String name;
 
-    @OneToMany(mappedBy = "bucketList", fetch=FetchType.LAZY)
+    @OneToMany(mappedBy = "bucketList")
     @Singular
     private Set<Destination> destinations = new HashSet<>();
 

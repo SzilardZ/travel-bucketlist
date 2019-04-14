@@ -25,44 +25,42 @@ public class Initializer {
     @Bean
     public void init() {
 
-        User user1 = User.builder().firstName("Adam").lastName("Smith").email("adamsmith@yahoocom").build();
-        userService.addUser(user1);
-
-        Destination destination1 = Destination.builder().location("Tel-Aviv").note("elmenni").build();
-        destinationService.addDestination(destination1);
-
-        Destination destination2 = Destination.builder().location("Baku").note("nana, hogy elmenni").build();
-        destinationService.addDestination(destination2);
-
-        bucketListService.addBucketList(BucketList.builder()
-                .user(user1)
-                .destination(destination1)
-                .destination(destination2)
-                .build());
+        createUser("Adam", "Smith", "adamsmith@yahoocom");
+        createUser("Steven", "Tyler", "steven@yahoo.com");
 
 
-
-        User user2 = User.builder().firstName("Steven").lastName("Tyler").email("steven@yahoo.com").build();
-        userService.addUser(user2);
-
-        Destination destination3 = Destination.builder().location("London").note("voltunk").build();
-        destinationService.addDestination(destination3);
-
-        Destination destination4 = Destination.builder().location("Dubai").note("menni megint").build();
-        destinationService.addDestination(destination4);
-
-        Destination destination5 = Destination.builder().location("Madrid").note("jovore").build();
-        destinationService.addDestination(destination5);
-
-        bucketListService.addBucketList(BucketList.builder()
-                .user(user2)
-                .destination(destination3)
-                .destination(destination4)
-                .destination(destination5)
-                .destination(destination1)
-                .build());
-
+        createDestination((long) 1, "Tel-Aviv", "elmenni");
+        createDestination((long) 1, "Baku", "nana, hogy elmenni");
+        createDestination((long) 2, "London", "megvolt");
+        createDestination((long) 2, "Dubai", "ujra elmenni");
+        createDestination((long) 2, "Madrid", "jovore");
 
     }
+
+
+    private void createUser(String firstName, String lastName, String email) {
+        BucketList bucketList = new BucketList();
+        User user = User.builder()
+                .firstName(firstName)
+                .lastName(lastName)
+                .email(email)
+                .bucketList(bucketList)
+                .build();
+        bucketList.setName(user.getFirstName() + " " + user.getLastName() + "'s Bucket List");
+        bucketListService.addBucketList(bucketList);
+        userService.addUser(user);
+    }
+
+
+    private void createDestination(Long bucketListId, String location, String note) {
+        BucketList bucketList = bucketListService.getBucketListById(bucketListId);
+        Destination destination = Destination.builder()
+                .location(location)
+                .note(note)
+                .build();
+        destination.setBucketList(bucketList);
+        destinationService.addDestination(destination);
+    }
+
 
 }

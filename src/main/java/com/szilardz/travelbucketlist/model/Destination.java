@@ -21,10 +21,15 @@ public class Destination {
 
     private String location;
 
+    private boolean visited = false;
+
     private String note;
 
-    @ManyToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name = "bucket_list_id")
+    @ManyToOne
     private BucketList bucketList;
+
+    private void visitDestination() {
+        this.visited = true;
+    }
 
 }

@@ -17,7 +17,7 @@ public class HomePageController {
     @GetMapping("/user/{id}")
     public String homepage(@PathVariable Long id) {
         User user = userService.getUserById(id);
-        return user.getEmail();
+        return user.getBucketList().getName();
     }
 
 

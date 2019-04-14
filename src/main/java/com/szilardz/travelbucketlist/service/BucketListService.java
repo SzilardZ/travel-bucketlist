@@ -14,4 +14,8 @@ public class BucketListService {
     public void addBucketList(BucketList bucketList) {
         bucketListRepository.save(bucketList);
     }
+
+    public BucketList getBucketListById(Long id) {
+        return bucketListRepository.getByBucketListId(id);
+    }
 }
