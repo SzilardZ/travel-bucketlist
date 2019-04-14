@@ -14,4 +14,8 @@ public class DestinationService {
     public void addDestination(Destination destination) {
         destinationRepository.save(destination);
     }
+
+    public Destination getDestinationById(Long id) {
+        return destinationRepository.getByDestinationId(id);
+    }
 }

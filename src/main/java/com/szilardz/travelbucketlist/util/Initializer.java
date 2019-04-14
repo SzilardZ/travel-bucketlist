@@ -31,7 +31,7 @@ public class Initializer {
 
         createDestination((long) 1, "Tel-Aviv", "elmenni");
         createDestination((long) 1, "Baku", "nana, hogy elmenni");
-        createDestination((long) 2, "London", "megvolt");
+        createDestination((long) 2, "Reykjavik", "megvolt");
         createDestination((long) 2, "Dubai", "ujra elmenni");
         createDestination((long) 2, "Madrid", "jovore");
 
