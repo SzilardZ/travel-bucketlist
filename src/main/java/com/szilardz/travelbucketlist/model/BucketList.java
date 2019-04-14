@@ -20,6 +20,9 @@ public class BucketList {
 
     private String name;
 
+    @OneToOne
+    private User user;
+
     @OneToMany(mappedBy = "bucketList")
     @Singular
     private Set<Destination> destinations = new HashSet<>();

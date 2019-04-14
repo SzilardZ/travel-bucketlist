@@ -5,6 +5,8 @@ import com.szilardz.travelbucketlist.repository.DestinationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DestinationService {
 
@@ -18,4 +20,9 @@ public class DestinationService {
     public Destination getDestinationById(Long id) {
         return destinationRepository.getByDestinationId(id);
     }
+
+    public List<Destination> getAllDestinationsByBucketList(Long id) {
+        return destinationRepository.getDestinationsByBucketList_BucketListId(id);
+    }
+
 }
