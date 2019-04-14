@@ -1,13 +1,10 @@
 package com.szilardz.travelbucketlist.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "bucket_list")
@@ -19,12 +16,13 @@ public class BucketList {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long bucketListId;
 
-    @Column(name = "user")
+    @OneToOne
     private User user;
 
-    @Column(name = "destinations")
-    private List<Destination> destinationList = new ArrayList<>();
+    @OneToMany(mappedBy = "bucketList", fetch=FetchType.LAZY)
+    @Singular
+    private Set<Destination> destinations = new HashSet<>();
 
 }

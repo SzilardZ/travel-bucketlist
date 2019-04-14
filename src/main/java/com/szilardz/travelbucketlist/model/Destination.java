@@ -17,15 +17,14 @@ public class Destination {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long destinationId;
 
-    @Column(name = "location")
     private String location;
 
-    @Column(name = "note")
     private String note;
 
-    @ManyToMany
+    @ManyToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name = "bucket_list_id")
     private BucketList bucketList;
 
 }
