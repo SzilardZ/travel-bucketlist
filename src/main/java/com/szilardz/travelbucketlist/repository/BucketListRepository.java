@@ -9,5 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface BucketListRepository extends JpaRepository<BucketList, Long> {
 
     BucketList getByBucketListId(Long id);
+
     BucketList getBucketListByUser(User user);
 }

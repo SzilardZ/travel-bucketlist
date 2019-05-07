@@ -27,16 +27,13 @@ public class Initializer {
 
         createUser("Adam", "Smith", "adamsmith@yahoocom");
         createUser("Steven", "Tyler", "steven@yahoo.com");
-
-
-        createDestination((long) 1, "Tel-Aviv", "elmenni");
-        createDestination((long) 1, "Baku", "nana, hogy elmenni");
-        createDestination((long) 2, "Reykjavik", "megvolt");
-        createDestination((long) 2, "Dubai", "ujra elmenni");
-        createDestination((long) 2, "Madrid", "jovore");
+        createDestination((long) 1, "Tel-Aviv", "must have");
+        createDestination((long) 1, "Baku", "of course must have!");
+        createDestination((long) 2, "Reykjavik", "already done");
+        createDestination((long) 2, "Dubai", "need to go again!");
+        createDestination((long) 2, "Madrid", "next year?");
 
     }
-
 
     private void createUser(String firstName, String lastName, String email) {
         BucketList bucketList = new BucketList();
@@ -46,11 +43,9 @@ public class Initializer {
                 .email(email)
                 .bucketList(bucketList)
                 .build();
-        bucketList.setName(user.getFirstName() + " " + user.getLastName() + "'s Bucket List");
-        bucketListService.addBucketList(bucketList);
+        bucketList.setUser(user);
         userService.addUser(user);
     }
-
 
     private void createDestination(Long bucketListId, String location, String note) {
         BucketList bucketList = bucketListService.getBucketListById(bucketListId);
@@ -61,6 +56,5 @@ public class Initializer {
         destination.setBucketList(bucketList);
         destinationService.addDestination(destination);
     }
-
 
 }

@@ -10,5 +10,6 @@ import java.util.List;
 public interface DestinationRepository extends JpaRepository<Destination, Long> {
 
     Destination getByDestinationId(Long id);
+
     List<Destination> getDestinationsByBucketList_BucketListId(Long id);
 }

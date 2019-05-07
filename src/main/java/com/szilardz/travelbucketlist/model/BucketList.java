@@ -18,8 +18,6 @@ public class BucketList {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bucketListId;
 
-    private String name;
-
     @OneToOne
     private User user;
 

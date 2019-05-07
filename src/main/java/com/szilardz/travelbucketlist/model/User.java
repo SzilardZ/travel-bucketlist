@@ -9,7 +9,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="_user")
+@Table(name = "_user")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -26,7 +26,7 @@ public class User {
 
     private String email;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private BucketList bucketList;
 
 }
