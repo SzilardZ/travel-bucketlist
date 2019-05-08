@@ -14,7 +14,7 @@ public class DestinationService {
     @Autowired
     private DestinationRepository destinationRepository;
 
-    public Destination addDestination(Destination destination) {
+    public Destination addNewDestination(Destination destination) {
         return destinationRepository.save(destination);
     }
 
@@ -28,6 +28,10 @@ public class DestinationService {
 
     public List<Destination> getAllDestinations() {
         return destinationRepository.findAll();
+    }
+
+    public void deleteDestinationById(long id) {
+        destinationRepository.deleteById(id);
     }
 
     public void markDestinationAsVisited(Long id, LocalDate visitFrom, LocalDate visitUntil) {

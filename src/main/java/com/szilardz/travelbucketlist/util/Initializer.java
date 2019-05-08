@@ -62,7 +62,7 @@ public class Initializer {
                 .note(note)
                 .build();
         destination.setBucketList(bucketList);
-        destinationService.addDestination(destination);
+        destinationService.addNewDestination(destination);
     }
 
 }

@@ -31,6 +31,13 @@ public class DestinationController {
 
     @PostMapping("/add-destination")
     public Destination addNewDestination(@RequestBody Destination destination) {
-        return destinationService.addDestination(destination);
+        return destinationService.addNewDestination(destination);
     }
+
+    @DeleteMapping("/delete-destination")
+    public void deleteDestinationById(@RequestParam long id) {
+        destinationService.deleteDestinationById(id);
+    }
+
+
 }
