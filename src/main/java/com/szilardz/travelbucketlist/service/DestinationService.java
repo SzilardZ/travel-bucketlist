@@ -14,8 +14,8 @@ public class DestinationService {
     @Autowired
     private DestinationRepository destinationRepository;
 
-    public void addDestination(Destination destination) {
-        destinationRepository.save(destination);
+    public Destination addDestination(Destination destination) {
+        return destinationRepository.save(destination);
     }
 
     public Destination getDestinationById(Long id) {

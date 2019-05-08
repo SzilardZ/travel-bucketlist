@@ -4,9 +4,7 @@ import com.szilardz.travelbucketlist.model.Destination;
 import com.szilardz.travelbucketlist.service.BucketListService;
 import com.szilardz.travelbucketlist.service.DestinationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,6 +18,7 @@ public class DestinationController {
     @Autowired
     private DestinationService destinationService;
 
+
 //    @GetMapping("/{userId}")
 //    public BucketList getBucketListByUserId(@PathVariable("userId") long id) {
 //        return bucketListService.getBucketListByUserId(id);
@@ -28,5 +27,10 @@ public class DestinationController {
     @GetMapping("/destinations")
     public List<Destination> getAllDestinations() {
         return destinationService.getAllDestinations();
+    }
+
+    @PostMapping("/add-destination")
+    public Destination addNewDestination(@RequestBody Destination destination) {
+        return destinationService.addDestination(destination);
     }
 }
