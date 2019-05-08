@@ -1,11 +1,13 @@
 package com.szilardz.travelbucketlist.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "destination")
@@ -23,13 +25,15 @@ public class Destination {
 
     private boolean visited = false;
 
+    private LocalDate visitedFrom = null;
+
+    private LocalDate visitedUntil = null;
+
     private String note;
 
+    @JsonIgnore
     @ManyToOne
     private BucketList bucketList;
 
-    private void visitDestination() {
-        this.visited = true;
-    }
 
 }
