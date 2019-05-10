@@ -6,6 +6,7 @@ import com.szilardz.travelbucketlist.service.DestinationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @CrossOrigin
@@ -35,8 +36,18 @@ public class DestinationController {
     }
 
     @DeleteMapping("/delete-destination")
-    public void deleteDestinationById(@RequestParam long id) {
-        destinationService.deleteDestinationById(id);
+    public void deleteDestinationById(@RequestParam int id) {
+        System.out.println("AAAAAAA " + id);
+        destinationService.deleteDestinationById((long) id);
+    }
+
+    @PutMapping("/add-to-visited")
+    public void markDestinationAsVisited(@RequestBody Destination destination) {
+        long id = destination.getDestinationId();
+        LocalDate visitedFrom = destination.getVisitedFrom();
+        LocalDate visitedUntil = destination.getVisitedUntil();
+        String note = destination.getNote();
+        destinationService.markDestinationAsVisited(id, visitedFrom, visitedUntil, note);
     }
 
 
