@@ -1,0 +1,54 @@
+package com.szilardz.travelbucketlist.controller;
+
+import com.szilardz.travelbucketlist.model.Destination;
+import com.szilardz.travelbucketlist.service.BucketListService;
+import com.szilardz.travelbucketlist.service.DestinationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
+import java.util.List;
+
+@CrossOrigin
+@RestController
+public class DestinationController {
+
+    @Autowired
+    private BucketListService bucketListService;
+
+    @Autowired
+    private DestinationService destinationService;
+
+
+//    @GetMapping("/{userId}")
+//    public BucketList getBucketListByUserId(@PathVariable("userId") long id) {
+//        return bucketListService.getBucketListByUserId(id);
+//    }
+
+    @GetMapping("/destinations")
+    public List<Destination> getAllDestinations() {
+        return destinationService.getAllDestinations();
+    }
+
+    @PostMapping("/add-destination")
+    public Destination addNewDestination(@RequestBody Destination destination) {
+        return destinationService.addNewDestination(destination);
+    }
+
+    @DeleteMapping("/delete-destination")
+    public void deleteDestinationById(@RequestParam int id) {
+        System.out.println("AAAAAAA " + id);
+        destinationService.deleteDestinationById((long) id);
+    }
+
+    @PutMapping("/add-to-visited")
+    public void markDestinationAsVisited(@RequestBody Destination destination) {
+        long id = destination.getDestinationId();
+        LocalDate visitedFrom = destination.getVisitedFrom();
+        LocalDate visitedUntil = destination.getVisitedUntil();
+        String note = destination.getNote();
+        destinationService.markDestinationAsVisited(id, visitedFrom, visitedUntil, note);
+    }
+
+
+}

@@ -25,11 +25,11 @@ public class Initializer {
     @Bean
     public void init() {
 
-        createUser("Adam", "Smith", "adamsmith@yahoocom");
+        createUser("Adam", "Smith", "adamsmith@yahoo.com");
         createUser("Steven", "Tyler", "steven@yahoo.com");
         createDestination((long) 1, "Tel-Aviv", "must have");
         createDestination((long) 1, "Baku", "of course must have!");
-        createDestination((long) 2, "Reykjavik", "already done");
+        createDestination((long) 2, "Reykjavik", "will go with John");
         createDestination((long) 2, "Dubai", "need to go again!");
         createDestination((long) 2, "Madrid", "next year?");
 
@@ -54,7 +54,7 @@ public class Initializer {
                 .note(note)
                 .build();
         destination.setBucketList(bucketList);
-        destinationService.addDestination(destination);
+        destinationService.addNewDestination(destination);
     }
 
 }
