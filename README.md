@@ -1,9 +1,9 @@
 # Travel Bucket List - backend
 
-This is the backend of my Pet project. The app's name is Travel Bucket List. You can add new destinations where you would like to go in your life.
+This is the backend of my Pet project. The app's name is Travel Bucket List. You can add new destinations which you would like to visit in your life.
 
 
-After you visited the place, you can set the destination to visited, and from now on you can find the destination at the Visited Destinations. You can also set the date from and until, when you have visited the place.
+After you visited the place, you can change the status of the destination to visited, and from now on you can find the destination at the Visited Destinations. You can also set the date from and until, when you have visited the place.
 
 ________________________________________________________________________
 
