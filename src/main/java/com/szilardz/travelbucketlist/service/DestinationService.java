@@ -18,7 +18,7 @@ public class DestinationService {
         return destinationRepository.save(destination);
     }
 
-    public Destination getDestinationById(long id) {
+    public Destination getDestinationById(Long id) {
         return destinationRepository.getByDestinationId(id);
     }
 
@@ -30,11 +30,11 @@ public class DestinationService {
         return destinationRepository.findAll();
     }
 
-    public void deleteDestinationById(long id) {
+    public void deleteDestinationById(Long id) {
         destinationRepository.deleteById(id);
     }
 
-    public void markDestinationAsVisited(long id, LocalDate visitedFrom, LocalDate visitedUntil, String note) {
+    public void markDestinationAsVisited(Long id, LocalDate visitedFrom, LocalDate visitedUntil, String note) {
         Destination destination = getDestinationById(id);
         destination.setVisited(true);
         destination.setVisitedFrom(visitedFrom);

@@ -1,7 +1,6 @@
 package com.szilardz.travelbucketlist.controller;
 
 import com.szilardz.travelbucketlist.model.Destination;
-import com.szilardz.travelbucketlist.service.BucketListService;
 import com.szilardz.travelbucketlist.service.DestinationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -13,17 +12,10 @@ import java.util.List;
 @RestController
 public class DestinationController {
 
-    @Autowired
-    private BucketListService bucketListService;
 
     @Autowired
     private DestinationService destinationService;
 
-
-//    @GetMapping("/{userId}")
-//    public BucketList getBucketListByUserId(@PathVariable("userId") long id) {
-//        return bucketListService.getBucketListByUserId(id);
-//    }
 
     @GetMapping("/destinations")
     public List<Destination> getAllDestinations() {
@@ -32,23 +24,21 @@ public class DestinationController {
 
     @PostMapping("/add-destination")
     public Destination addNewDestination(@RequestBody Destination destination) {
+        System.out.println("FSFSAFASFSA");
         return destinationService.addNewDestination(destination);
     }
 
-    @DeleteMapping("/delete-destination")
-    public void deleteDestinationById(@RequestParam int id) {
-        System.out.println("AAAAAAA " + id);
-        destinationService.deleteDestinationById((long) id);
+    @DeleteMapping("/delete-destination/{id}")
+    public void deleteDestinationById(@PathVariable("id") long id) {
+        destinationService.deleteDestinationById(id);
     }
 
-    @PutMapping("/add-to-visited")
-    public void markDestinationAsVisited(@RequestBody Destination destination) {
-        long id = destination.getDestinationId();
-        LocalDate visitedFrom = destination.getVisitedFrom();
-        LocalDate visitedUntil = destination.getVisitedUntil();
-        String note = destination.getNote();
-        destinationService.markDestinationAsVisited(id, visitedFrom, visitedUntil, note);
+    @PutMapping("/add-to-visited/{id}")
+    public void markDestinationAsVisited(@PathVariable("id") long id) {
+        System.out.println("MMMMMMMMMMMMM" + id);
+        LocalDate visitedUntil = LocalDate.ofEpochDay(2000-11-11);
+        String note = "barmi";
+//        destinationService.markDestinationAsVisited(id, LocalDate.parse(visitedFrom), visitedUntil, note);
     }
-
 
 }

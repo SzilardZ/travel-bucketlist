@@ -27,11 +27,11 @@ public class Initializer {
 
         createUser("Adam", "Smith", "adamsmith@yahoo.com");
         createUser("Steven", "Tyler", "steven@yahoo.com");
-        createDestination((long) 1, "Tel-Aviv", "must have");
-        createDestination((long) 1, "Baku", "of course must have!");
-        createDestination((long) 2, "Reykjavik", "will go with John");
-        createDestination((long) 2, "Dubai", "need to go again!");
-        createDestination((long) 2, "Madrid", "next year?");
+        createDestination(1L, "Tel-Aviv", "must have");
+        createDestination(2L, "Baku", "of course must have!");
+        createDestination(3L, "Reykjavik", "will go with John");
+        createDestination(4L, "Dubai", "need to go again!");
+        createDestination(5L, "Madrid", "next year?");
 
     }
 
