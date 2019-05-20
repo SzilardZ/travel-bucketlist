@@ -46,7 +46,7 @@ public class UserPrinciple implements UserDetails {
 
         return new UserPrinciple(
                 user.getId(),
-                user.getName(),
+                user.getUsername(),
                 user.getUsername(),
                 user.getEmail(),
                 user.getPassword(),
@@ -109,6 +109,4 @@ public class UserPrinciple implements UserDetails {
         UserPrinciple user = (UserPrinciple) o;
         return Objects.equals(id, user.id);
     }
-
-
 }
