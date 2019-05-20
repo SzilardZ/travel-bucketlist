@@ -1,20 +1,27 @@
 package com.szilardz.travelbucketlist.security.jwt;
 
-import com.sun.org.apache.xml.internal.security.algorithms.SignatureAlgorithm;
 import com.szilardz.travelbucketlist.security.services.UserPrinciple;
-import io.jsonwebtoken.Jwts;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
+import io.jsonwebtoken.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.stereotype.Component;
 
+import java.util.Date;
+
+@Component
 public class JwtProvider {
+    private static final Logger logger = LoggerFactory.getLogger(JwtProvider.class);
 
-    @Value("${grokonez.app.jwtSecret}")
+    @Value("verysecretkeyxd")
     private String jwtSecret;
 
-    @Value("${grokonez.app.jwtExpiration}")
+    @Value("86400")
     private int jwtExpiration;
 
     public String generateJwtToken(Authentication authentication) {
+
         UserPrinciple userPrincipal = (UserPrinciple) authentication.getPrincipal();
 
         return Jwts.builder()
@@ -26,8 +33,22 @@ public class JwtProvider {
     }
 
     public boolean validateJwtToken(String authToken) {
-        Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
-        return ...;
+        try {
+            Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(authToken);
+            return true;
+        } catch (SignatureException e) {
+            logger.error("Invalid JWT signature -> Message: {} ", e);
+        } catch (MalformedJwtException e) {
+            logger.error("Invalid JWT token -> Message: {}", e);
+        } catch (ExpiredJwtException e) {
+            logger.error("Expired JWT token -> Message: {}", e);
+        } catch (UnsupportedJwtException e) {
+            logger.error("Unsupported JWT token -> Message: {}", e);
+        } catch (IllegalArgumentException e) {
+            logger.error("JWT claims string is empty -> Message: {}", e);
+        }
+
+        return false;
     }
 
     public String getUserNameFromJwtToken(String token) {
