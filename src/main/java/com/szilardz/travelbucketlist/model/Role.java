@@ -1,5 +1,6 @@
 package com.szilardz.travelbucketlist.model;
 
+import com.szilardz.travelbucketlist.util.RoleName;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -37,6 +38,4 @@ public class Role {
     public void setName(RoleName name) {
         this.name = name;
     }
-}
-
 }
