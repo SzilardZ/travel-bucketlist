@@ -1,7 +1,7 @@
 package com.szilardz.travelbucketlist.security.services;
 
 import com.szilardz.travelbucketlist.model.User;
-import com.szilardz.travelbucketlist.repository.UserRepository;
+import com.szilardz.travelbucketlist.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -12,14 +12,15 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
+
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = userRepository.findByUsername(username).orElseThrow(
+        User user = userService.findByUsername(username).orElseThrow(
                 () -> new UsernameNotFoundException("User Not Found with -> username or email : " + username));
 
         return UserPrinciple.build(user);

@@ -6,9 +6,9 @@ import com.szilardz.travelbucketlist.message.response.JwtResponse;
 import com.szilardz.travelbucketlist.message.response.ResponseMessage;
 import com.szilardz.travelbucketlist.model.Role;
 import com.szilardz.travelbucketlist.model.User;
-import com.szilardz.travelbucketlist.repository.RoleRepository;
-import com.szilardz.travelbucketlist.repository.UserRepository;
 import com.szilardz.travelbucketlist.security.jwt.JwtProvider;
+import com.szilardz.travelbucketlist.service.RoleService;
+import com.szilardz.travelbucketlist.service.UserService;
 import com.szilardz.travelbucketlist.util.RoleName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,10 +34,11 @@ public class AuthRestApi {
     AuthenticationManager authenticationManager;
 
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
+
 
     @Autowired
-    RoleRepository roleRepository;
+    RoleService roleService;
 
     @Autowired
     PasswordEncoder encoder;
@@ -61,12 +62,12 @@ public class AuthRestApi {
 
     @PostMapping("/signup")
     public ResponseEntity<?> registerUser(@Valid @RequestBody SignUpForm signUpRequest) {
-        if (userRepository.existsByUsername(signUpRequest.getUsername())) {
+        if (userService.existsByUsername(signUpRequest.getUsername())) {
             return new ResponseEntity<>(new ResponseMessage("Fail -> Username is already taken!"),
                     HttpStatus.BAD_REQUEST);
         }
 
-        if (userRepository.existsByEmail(signUpRequest.getEmail())) {
+        if (userService.existsByEmail(signUpRequest.getEmail())) {
             return new ResponseEntity<>(new ResponseMessage("Fail -> Email is already in use!"),
                     HttpStatus.BAD_REQUEST);
         }
@@ -81,15 +82,15 @@ public class AuthRestApi {
 
 
         Set<Role> roles = new HashSet<>();
-        if(roleRepository.findByName(RoleName.ROLE_USER).orElse(null) == null) {
-            roleRepository.save(new Role(RoleName.ROLE_USER));
+        if(roleService.findByName(RoleName.ROLE_USER).orElse(null) == null) {
+            roleService.save(new Role(RoleName.ROLE_USER));
         }
-        Role userRole = roleRepository.findByName(RoleName.ROLE_USER)
+        Role userRole = roleService.findByName(RoleName.ROLE_USER)
                 .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
         roles.add(userRole);
 
         user.setRoles(roles);
-        userRepository.save(user);
+        userService.save(user);
 
         return new ResponseEntity<>(new ResponseMessage("User registered successfully!"), HttpStatus.OK);
     }

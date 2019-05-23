@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@CrossOrigin
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
+@RequestMapping("/api/destinations")
 public class DestinationController {
 
 
@@ -17,7 +18,7 @@ public class DestinationController {
     private DestinationService destinationService;
 
 
-    @GetMapping("/destinations")
+    @GetMapping("/")
     public List<Destination> getAllDestinations() {
         return destinationService.getAllDestinations();
     }
