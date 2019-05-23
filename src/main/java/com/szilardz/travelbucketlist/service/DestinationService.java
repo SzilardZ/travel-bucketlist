@@ -22,7 +22,7 @@ public class DestinationService {
         return destinationRepository.getByDestinationId(id);
     }
 
-    public List<Destination> getAllDestinationsByBucketList(Long id) {
+    public List<Destination> getAllDestinationsByBucketListId(Long id) {
         return destinationRepository.getDestinationsByBucketList_BucketListId(id);
     }
 
