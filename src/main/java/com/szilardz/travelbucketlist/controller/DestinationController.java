@@ -40,7 +40,7 @@ public class DestinationController {
         return destinationService.getAllDestinationsByBucketListId(id);
     }
 
-    @PostMapping("/add-destination/{username}")
+    @PostMapping("/{username}/add-destination")
     @PreAuthorize("hasRole('USER')")
     public Destination addNewDestination(@RequestBody Destination destination, @PathVariable("username") String username) {
         System.out.println("FSFSAFASFSA");
@@ -53,6 +53,7 @@ public class DestinationController {
         destination.setBucketList(bucketList);
 
         return destinationService.addNewDestination(destination);
+
     }
 
     @DeleteMapping("/delete-destination/{id}")

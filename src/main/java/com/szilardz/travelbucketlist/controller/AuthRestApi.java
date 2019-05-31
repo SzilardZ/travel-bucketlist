@@ -4,6 +4,7 @@ import com.szilardz.travelbucketlist.message.request.LoginForm;
 import com.szilardz.travelbucketlist.message.request.SignUpForm;
 import com.szilardz.travelbucketlist.message.response.JwtResponse;
 import com.szilardz.travelbucketlist.message.response.ResponseMessage;
+import com.szilardz.travelbucketlist.model.BucketList;
 import com.szilardz.travelbucketlist.model.Role;
 import com.szilardz.travelbucketlist.model.User;
 import com.szilardz.travelbucketlist.security.jwt.JwtProvider;
@@ -72,14 +73,18 @@ public class AuthRestApi {
                     HttpStatus.BAD_REQUEST);
         }
 
+        BucketList bucketList = new BucketList();
+
         User user = User.builder()
                 .firstName(signUpRequest.getFirstName())
                 .lastName(signUpRequest.getLastName())
                 .username(signUpRequest.getUsername())
                 .email(signUpRequest.getEmail())
                 .password(encoder.encode(signUpRequest.getPassword()))
+                .bucketList(bucketList)
                 .build();
 
+        bucketList.setUser(user);
 
         Set<Role> roles = new HashSet<>();
         if(roleService.findByName(RoleName.ROLE_USER).orElse(null) == null) {
