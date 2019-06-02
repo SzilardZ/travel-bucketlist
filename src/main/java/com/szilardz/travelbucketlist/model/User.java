@@ -49,7 +49,8 @@ public class User {
     @Size(min = 8)
     private String password;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private BucketList bucketList;
 
     @ManyToMany(fetch = FetchType.LAZY)

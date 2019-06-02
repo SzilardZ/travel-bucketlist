@@ -23,15 +23,6 @@ public class UserController {
 
     private String errorMessage = "User not found with this username!";
 
-    @GetMapping(path = {"/{username}"})
-    @PreAuthorize("hasRole('USER')")
-    public ResponseEntity<User> userView(@PathVariable("username") String username) {
-        User user = userService.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(errorMessage));
-
-        return ResponseEntity.ok().body(user);
-    }
-
     @GetMapping("/{username}/destinations")
     @PreAuthorize("hasRole('USER')")
     public ResponseEntity<BucketList> getBucketListByUserName(@PathVariable("username") String username){
